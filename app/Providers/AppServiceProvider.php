@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Providers;
-
+use App\Passport\Passport;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Schema\Builder;
 
