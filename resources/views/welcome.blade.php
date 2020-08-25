@@ -81,6 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
+<<<<<<< HEAD
                     Laravel
                 </div>
 
@@ -94,6 +95,11 @@
                     <a href="https://vapor.laravel.com">Vapor</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+=======
+                    GOTO
+                </div>
+                <h3>Coming soon...</h3>
+>>>>>>> testing-laravel
             </div>
         </div>
     </body>

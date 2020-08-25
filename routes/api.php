@@ -17,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/login', 'ApiLoginController@login');
+
+Route::middleware('auth:api')->get('/logout', function(Request $request){
+    $request->user()->tokens()->delete();
+    return json_encode([
+        "message" => "logout succesful"
+    ]);
+});
