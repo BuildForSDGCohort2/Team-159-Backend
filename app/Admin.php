@@ -9,4 +9,9 @@ class Admin extends Model
     protected $fillable =[ 
         'name_ofAdmin',
     ];
+
+    public function users()
+    {
+        return $this->hasMany('App/User');
+    }
 }

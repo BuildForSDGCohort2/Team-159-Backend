@@ -11,6 +11,10 @@ class Company extends Model
         'company_description',
         'telephone_number',
         'company_address',
-        'user-id',
+        'user_id',
     ];
+    public function user()
+    {
+        return $this->belongsTo('App/User');
+    }
 }

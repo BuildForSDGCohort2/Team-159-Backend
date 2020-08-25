@@ -13,4 +13,8 @@ class Client extends Model
         'user_id',
         'package_id',
     ];
+    public function packages()
+    {
+        return $this->hasMany('App/Package');
+    }
 }
