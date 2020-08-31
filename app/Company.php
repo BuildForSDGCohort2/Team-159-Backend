@@ -11,6 +11,14 @@ class Company extends Model
         'company_description',
         'telephone_number',
         'company_address',
-        'user-id',
+        'package_id',
+        'user_id',
     ];
+    public function packages(){
+        return $this->hasMany('app/Package');
+    }
+    public function user()
+    {
+        return $this->belongsTo('app/User');
+    }
 }
