@@ -13,7 +13,7 @@ class Package extends Model
         'package_category',
         'package_pickup_address',
         'package_delivery_address',
-        'user-id',
+        'user_id',
         'client_id',
         'company_id',
         'status_id',
