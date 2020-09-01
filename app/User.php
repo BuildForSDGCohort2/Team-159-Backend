@@ -38,16 +38,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function packages()
+        public function sendEmailVerificationNotification()
     {
-        return $this->hasMany('App/Package');
-    }
-    public function comments()
-    {
-        return $this->hasMany('App/Comment');
-    }
-    public function company()
-    {
-        return $this->hasOne('App/Company');
+     $this->notify(new VerifyEmail);
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class PasswordResetSuccess extends Notification
+class EmailVerificationNotification extends Notification
 {
     use Queueable;
 
@@ -41,9 +41,9 @@ class PasswordResetSuccess extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('You have successfully changed your password.')
+                    ->line('The introduction to the notification.')
                     ->action('Notification Action', url('/'))
-                    ->line('if you did not change your password kindly protect your account!');
+                    ->line('Thank you for using our application!');
     }
 
     /**

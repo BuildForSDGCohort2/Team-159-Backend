@@ -10,8 +10,5 @@ class Admin extends Model
         'name_of_admin',
     ];
 
-    public function users()
-    {
-        return $this->hasMany('App/User');
-    }
+
 }

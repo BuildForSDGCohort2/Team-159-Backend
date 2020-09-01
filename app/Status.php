@@ -8,10 +8,7 @@ class Status extends Model
 {
     protected $fillable = [
         'status',
-        'package_id',
+    
     ];
-    public function package()
-    {
-        return $this->hasMany('App/Package');
-    }
+    
 }

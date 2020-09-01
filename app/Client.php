@@ -10,11 +10,6 @@ class Client extends Model
         'client_name',
         'telephone_number',
         'client_address',
-        'user_id',
-        'package_id',
-    ];
-    public function packages()
-    {
-        return $this->hasMany('App/Package');
-    }
+        ];
+    
 }

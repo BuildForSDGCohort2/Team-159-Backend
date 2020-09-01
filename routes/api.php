@@ -35,3 +35,10 @@ Route::group([
     Route::get('find/{token}', 'PasswordResetController@find');
     Route::post('reset', 'PasswordResetController@reset');
 });
+Route::group([
+    'middleware' => 'api',
+], function() {
+Route::get('email/verify/{id}', 'VerificationController@verify')->name('verification.verify'); // Make sure to keep this as your route name
+
+Route::get('email/resend', 'VerificationController@resend')->name('verification.resend');
+});

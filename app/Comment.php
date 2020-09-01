@@ -10,7 +10,7 @@ class Comment extends Model
         'comment_body',
         'commentable_id',
         'commentable_type',
-        'user_id',
+        
 
     ];
 }
