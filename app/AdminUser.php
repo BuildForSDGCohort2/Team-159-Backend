@@ -10,4 +10,5 @@ class AdminUser extends Model
         'user_id',
         'admin_id',
     ];
+    
 }

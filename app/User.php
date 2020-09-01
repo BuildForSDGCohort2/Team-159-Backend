@@ -41,4 +41,17 @@ class User extends Authenticatable
     public function role(){
         return $this->belongsTo(Role::class);
     }
+  
+    public function packages()
+    {
+        return $this->hasMany('App/Package');
+    }
+    public function comments()
+    {
+        return $this->hasMany('App/Comment');
+    }
+    public function company()
+    {
+        return $this->hasOne('App/Company');
+    }
 }
