@@ -19,7 +19,7 @@ class CreateCommentsTable extends Migration
             $table->integer('commentable_id')->unsigned;
             $table->string('commentable_type');
 
-            $table->foreignId('user_id')->constrained('users');
+            $table->integer('user_id');
 
             $table->timestamps();
         });
@@ -35,3 +35,4 @@ class CreateCommentsTable extends Migration
         Schema::dropIfExists('comments');
     }
 }
+ 

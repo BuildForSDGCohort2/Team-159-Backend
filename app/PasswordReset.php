@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Status extends Model
+class PasswordReset extends Model
 {
     protected $fillable = [
-        'status',
-        'package_id',
+        'email',
+        'token',
     ];
 }

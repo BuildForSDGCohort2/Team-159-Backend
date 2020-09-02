@@ -11,6 +11,7 @@ class Company extends Model
         'company_description',
         'telephone_number',
         'company_address',
-        'user-id',
+        
     ];
+    
 }

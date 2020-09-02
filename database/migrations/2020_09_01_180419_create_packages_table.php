@@ -21,11 +21,8 @@ class CreatePackagesTable extends Migration
             $table->string('package_category');
             $table->string('package_pickup_address');
             $table->string('package_delivery_address');
-
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('client_id')->constrained('clients');
-            $table->foreignId('company_id')->constrained('companies');
-            $table->foreignId('status_id')->constrained('statuses');
+            $table->integer('company_id');
+            $table->integer('status_id');
             
             $table->timestamps();
         });

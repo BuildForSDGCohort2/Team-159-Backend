@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Packageuser extends Model
+class Status extends Model
 {
     protected $fillable = [
-        'user_id',
-        'package_id',
+        'status',
+    
     ];
+    
 }

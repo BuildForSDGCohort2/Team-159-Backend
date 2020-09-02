@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePackageUserTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreatePackageUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('package_user', function (Blueprint $table) {
-            $table->id();
-
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('package_id')->constrained('packages');
-
+        Schema::create('roles', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 255);
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreatePackageUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('package_user');
+        Schema::dropIfExists('roles');
     }
 }
