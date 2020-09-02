@@ -10,4 +10,8 @@ class Status extends Model
         'status',
         'package_id',
     ];
+    public function package()
+    {
+        return $this->hasMany('App/Package');
+    }
 }
