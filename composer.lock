@@ -956,6 +956,7 @@
         },
         {
             "name": "laravel/framework",
+<<<<<<< HEAD
             "version": "v7.27.0",
             "source": {
                 "type": "git",
@@ -966,6 +967,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/17777a92da9b3cf0026f26462d289d596420e6d0",
                 "reference": "17777a92da9b3cf0026f26462d289d596420e6d0",
+=======
+            "version": "v7.26.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "f64299a11dedaaadf1cfff07b2b3220a9b791837"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/f64299a11dedaaadf1cfff07b2b3220a9b791837",
+                "reference": "f64299a11dedaaadf1cfff07b2b3220a9b791837",
+>>>>>>> 74a56aad64b59ef443f96c443ad33c6b1b34518d
                 "shasum": ""
             },
             "require": {
@@ -1110,7 +1123,11 @@
                 "framework",
                 "laravel"
             ],
+<<<<<<< HEAD
             "time": "2020-09-01T13:41:48+00:00"
+=======
+            "time": "2020-08-25T13:44:44+00:00"
+>>>>>>> 74a56aad64b59ef443f96c443ad33c6b1b34518d
         },
         {
             "name": "laravel/helpers",
