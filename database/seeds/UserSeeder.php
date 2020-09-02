@@ -16,14 +16,11 @@ class UserSeeder extends Seeder
         //delete all entry
         User::truncate();
 
-        $role = Role::where('slug', 'admin')->first();
-
         $user = User::create([
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('default'),
+            'role_id' => 1,
         ]);
-
-        $user->role()->associate($role);
     }
 }
