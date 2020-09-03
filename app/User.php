@@ -42,4 +42,16 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public function isAdmin(){
+        return $this->role->slug == 'admin' ? true : false;
+    }
+
+    public function isDispatcher(){
+        return $this->role->slug == 'dispatcher' ? true : false;
+    }
+
+    public function isClient(){
+        return $this->role->slug == 'client' ? true : false;
+    }
+
 }

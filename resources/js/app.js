@@ -5,8 +5,8 @@
  */
 
 require('./bootstrap');
-
 window.Vue = require('vue');
+window.hljs = require('highlight.js');
 
 /**
  * The following block of code may be used to automatically register your

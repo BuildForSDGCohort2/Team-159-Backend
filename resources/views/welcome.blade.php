@@ -1,77 +1,85 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-            <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <title>Laravel</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+    <title>Laravel</title>
 
-            .full-height {
-                height: 100vh;
-            }
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-            .position-ref {
-                position: relative;
-            }
+    <!-- Styles -->
+    <style>
+        html,
+        body {
+            background-color: #fff;
+            color: #636b6f;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 200;
+            height: 100vh;
+            margin: 0;
+        }
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+        .full-height {
+            height: 100vh;
+        }
 
-            .content {
-                text-align: center;
-            }
+        .flex-center {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
 
-            .title {
-                font-size: 84px;
-            }
+        .position-ref {
+            position: relative;
+        }
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
+        .top-right {
+            position: absolute;
+            right: 10px;
+            top: 18px;
+        }
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
+        .content {
+            text-align: center;
+        }
+
+        .title {
+            font-size: 84px;
+        }
+
+        .links>a {
+            color: #636b6f;
+            padding: 0 25px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: .1rem;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .m-b-md {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
         <div class="flex-center position-ref">
             <div class="content">
                 <div class="title m-b-md">
                     GOTO
                 </div>
                 <p>
-                    Welcome to GOTO backend API Documentation page. 
+                    Welcome to GOTO backend API Documentation page.
                     On this page you will learn how to communicate with the GOTO api to integrate a full working logistics app.
                 </p>
             </div>
@@ -100,8 +108,8 @@
                 <h2>Client Login</h2>
                 <p><span>POST</span> <span class="url">https://goto2.herokuapp.com/login</span></p>
                 <p>Expected Parameters</p>
-                <code>
-                    <pre>
+                <pre>
+                    <code>
                         -H "Content-Type" : "application/json"
                         -H "Accept" : "application/json"
 
@@ -109,20 +117,20 @@
                             "email": "uniqueEmail@example.com"
                             "password": "123456"
                             }
-                    </pre>
-                </code>
+                    </code>
+                </pre>
             </div>
             <div>
                 <h2>Client Registration</h2>
                 <p><span>GET</span> <span class="url">https://goto2.herokuapp.com/profile</span></p>
                 <p>Expected Parameters</p>
-                <code>
-                    <pre>
+                <pre>
+                    <code>
                         -H "Content-Type: application/json"
                         -H "Accept: application/json"
                         -H "Authorization": "Bearer {key}"
+                    </code>
                     </pre>
-                </code>
             </div>
             <div>
                 <h2>Client </h2>
@@ -143,6 +151,16 @@
                 </code>
             </div>
         </div>
-        <script src="{{ asset('js/app.js') }}" defer></script>
-    </body>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightBlock(block);
+            });
+        });
+
+        console.log(window.hljs);
+    </script>
+</body>
+
 </html>
