@@ -3,7 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+            <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <title>Laravel</title>
 
         <!-- Fonts -->
@@ -64,27 +65,84 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
+        <div class="flex-center position-ref">
             <div class="content">
                 <div class="title m-b-md">
                     GOTO
                 </div>
-                <h3>Coming soon...</h3>
+                <p>
+                    Welcome to GOTO backend API Documentation page. 
+                    On this page you will learn how to communicate with the GOTO api to integrate a full working logistics app.
+                </p>
             </div>
         </div>
+        <div class="container">
+            <h2 class="text-center">Goto Documentation</h2>
+            <div>
+                <h2>Client Registration</h2>
+                <p><span>GET</span> <span class="url">https://goto2.herokuapp.com/register</span></p>
+                <p>Expected Parameters</p>
+                <code>
+                    <pre>
+                        -H "Content-Type: application/json"
+                        -H "Accept: application/json"
+
+                        -d {
+                            "name": "your name"
+                            "email": "uniqueEmail@example.com"
+                            "password": "123456"
+                            "password_confirm": "123456"
+                            }
+                    </pre>
+                </code>
+            </div>
+            <div>
+                <h2>Client Login</h2>
+                <p><span>POST</span> <span class="url">https://goto2.herokuapp.com/login</span></p>
+                <p>Expected Parameters</p>
+                <code>
+                    <pre>
+                        -H "Content-Type" : "application/json"
+                        -H "Accept" : "application/json"
+
+                        -d {
+                            "email": "uniqueEmail@example.com"
+                            "password": "123456"
+                            }
+                    </pre>
+                </code>
+            </div>
+            <div>
+                <h2>Client Registration</h2>
+                <p><span>GET</span> <span class="url">https://goto2.herokuapp.com/profile</span></p>
+                <p>Expected Parameters</p>
+                <code>
+                    <pre>
+                        -H "Content-Type: application/json"
+                        -H "Accept: application/json"
+                        -H "Authorization": "Bearer {key}"
+                    </pre>
+                </code>
+            </div>
+            <div>
+                <h2>Client </h2>
+                <p><span>GET</span> <span class="url">https://goto2.herokuapp.com/logout</span></p>
+                <p>Expected Parameters</p>
+                <code>
+                    <pre>
+                        -H "Content-Type: application/json"
+                        -H "Accept: application/json"
+
+                        -d {
+                            "name": "your name"
+                            "email": "uniqueEmail@example.com"
+                            "password": "123456"
+                            "password_confirm": "123456"
+                            }
+                    </pre>
+                </code>
+            </div>
+        </div>
+        <script src="{{ asset('js/app.js') }}" defer></script>
     </body>
 </html>
