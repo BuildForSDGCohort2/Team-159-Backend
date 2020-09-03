@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Package;
+use App\package\Package;
 use Illuminate\Http\Request;
 
 class PackageController extends Controller
