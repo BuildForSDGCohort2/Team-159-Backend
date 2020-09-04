@@ -49,8 +49,12 @@ Route::group([
     Route::get('email/resend', 'VerificationController@resend')->name('verification.resend');
 });
 
-Route::middleware(['client'], function(){
-    Route::get('testclient', function(){
-        echo "wow";
-    });
-});*/
+Route::get('email/resend', 'VerificationController@resend')->name('verification.resend');
+});
+Route::group([
+    'middleware' => 'auth:api',
+    'prefix' =>'package'
+], function() {
+    Route::post('create', 'PackageController@createPackages');
+    Route::get('all', 'PackageController@showAllPackages');
+});
