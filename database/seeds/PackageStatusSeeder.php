@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\package\Status;
 
 class PackageStatusSeeder extends Seeder
 {
@@ -11,6 +12,19 @@ class PackageStatusSeeder extends Seeder
      */
     public function run()
     {
-        //
+        //delete all status table
+        Status::truncate();
+
+        Status::create([
+            'status' => 'pendingPickup'
+        ]);
+
+        Status::create([
+            'status' => 'inTransit'
+        ]);
+
+        Status::create([
+            'status' => 'delivered'
+        ]);
     }
 }
