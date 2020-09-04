@@ -46,6 +46,6 @@ Route::group([
     'middleware' => 'auth:api',
     'prefix' =>'package'
 ], function() {
-    Route::post('create', 'PackageController@createPackages');
+    Route::post('create', 'PackageController@store');
     Route::get('all', 'PackageController@showAllPackages');
 });

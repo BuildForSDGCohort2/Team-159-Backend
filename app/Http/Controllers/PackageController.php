@@ -25,16 +25,16 @@ class PackageController extends Controller
      */
     public function createPackages(Request $request)
     {
-        $package = new Package;
-        $package->package_name = $request->package_name;
-        $package->package_description = $request->package_description;
-        $package->package_weight = $request->package_weight;
-        $package->package_category = $request->package_category;
-        $package->package_pickup_address = $request->package_pickup_address;
-        $package->package_delivery_address = $request->package_delivery_address;
-        $package->save();
-        return response()->json([
-            "message" =>"package added successfuly"], 201);
+        // $package = new Package;
+        // $package->package_name = $request->package_name;
+        // $package->package_description = $request->package_description;
+        // $package->package_weight = $request->package_weight;
+        // $package->package_category = $request->package_category;
+        // $package->package_pickup_address = $request->package_pickup_address;
+        // $package->package_delivery_address = $request->package_delivery_address;
+        // $package->save();
+        // return response()->json([
+        //     "message" =>"package added successfuly"], 201);
     
         
     }
@@ -59,14 +59,14 @@ class PackageController extends Controller
             return response()->json([
                 "message" =>" "], 400);
         }
-        $package = new Package;
-        $package->package_name = $request->input('package_name');
-        $package->package_description = $request->input('package_description');
-        $package->package_weight = $request->input('package_weight');
-        $package->package_category = $request->input('package_category');
-        $package->package_pickup_address = $request->input('package_pickup_address');
-        $package->package_delivery_address = $request->input('package_delivery_address');
-        $package->save();
+        // $package = new Package;
+        // $package->package_name = $request->input('package_name');
+        // $package->package_description = $request->input('package_description');
+        // $package->package_weight = $request->input('package_weight');
+        // $package->package_category = $request->input('package_category');
+        // $package->package_pickup_address = $request->input('package_pickup_address');
+        // $package->package_delivery_address = $request->input('package_delivery_address');
+        // $package->save();
         return response()->json([
             "message" =>"true"], 201);
     }
@@ -114,6 +114,6 @@ class PackageController extends Controller
      */
     public function destroy(Package $package)
     {
-        //
+        
     }
 }
