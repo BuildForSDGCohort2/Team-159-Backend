@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\package\Package;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PackageController extends Controller
 {
@@ -22,9 +23,20 @@ class PackageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createPackages(Request $request)
     {
-        //
+        $package = new Package;
+        $package->package_name = $request->package_name;
+        $package->package_description = $request->package_description;
+        $package->package_weight = $request->package_weight;
+        $package->package_category = $request->package_category;
+        $package->package_pickup_address = $request->package_pickup_address;
+        $package->package_delivery_address = $request->package_delivery_address;
+        $package->save();
+        return response()->json([
+            "message" =>"package added successfuly"], 201);
+    
+        
     }
 
     /**
@@ -35,7 +47,28 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),[
+        'package_name'=>'required|string|max:50',
+        'package_description'=>'required',
+        'package_weight'=>'required',
+        'package_category'=>'required',
+        'package_pickup_address'=>'required',
+        'package_delivery_address'=>'required'
+        ]);
+        if ($validator->fails()){
+            return response()->json([
+                "message" =>" "], 400);
+        }
+        $package = new Package;
+        $package->package_name = $request->input('package_name');
+        $package->package_description = $request->input('package_description');
+        $package->package_weight = $request->input('package_weight');
+        $package->package_category = $request->input('package_category');
+        $package->package_pickup_address = $request->input('package_pickup_address');
+        $package->package_delivery_address = $request->input('package_delivery_address');
+        $package->save();
+        return response()->json([
+            "message" =>"true"], 201);
     }
 
     /**
@@ -44,9 +77,10 @@ class PackageController extends Controller
      * @param  \App\Package  $package
      * @return \Illuminate\Http\Response
      */
-    public function show(Package $package)
+    public function showAllPackages(Package $package)
     {
-        //
+        $packages = Package::get()->toJson(JSON_PRETTY_PRINT);
+        return response($packagess, 200);
     }
 
     /**
