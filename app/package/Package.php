@@ -16,4 +16,7 @@ class Package extends Model
         
     ];
 
+    public function status(){
+        $this->hasOne(\App\package\Status::class);
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Authentication;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\VerifiesEmails;
@@ -10,35 +11,36 @@ use Illuminate\Http\Request;
 
 class VerificationController extends Controller
 {
-    //
+    use VerifiesEmails;
 
+    public function verify($user_id, Request $request)
+    {
+        if (!$request->hasValidSignature()) {
+            return response()->json(["msg" => "Invalid/Expired url provided."], 401);
+        }
 
-public function verify($user_id, Request $request) {
-    if (!$request->hasValidSignature()) {
-        return response()->json(["msg" => "Invalid/Expired url provided."], 401);
+        $user = \App\User::findOrFail($user_id);
+
+        if (!$user->hasVerifiedEmail()) {
+            $user->markEmailAsVerified();
+        }
+
+        return redirect()->to('/');
     }
 
-    $user = User::findOrFail($user_id);
+    public function resend()
+    {
+        if (auth()->user()->hasVerifiedEmail()) {
+            return response()->json(["msg" => "Email already verified."], 400);
+        }
 
-    if (!$user->hasVerifiedEmail()) {
-        $user->markEmailAsVerified();
+        auth()->user()->sendEmailVerificationNotification();
+
+        return response()->json(["msg" => "Email verification link sent to your email id"]);
     }
 
-    return redirect()->to('/');
-}
+    // }
 
-public function resend() {
-    if (auth()->user()->hasVerifiedEmail()) {
-        return response()->json(["msg" => "Email already verified."], 400);
-    }
-
-    auth()->user()->sendEmailVerificationNotification();
-
-    return response()->json(["msg" => "Email verification link sent to your email id"]);
-}
-
-// }
-use VerifiesEmails;
 
     /**
      * Where to redirect users after verification.
@@ -58,7 +60,4 @@ use VerifiesEmails;
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
-
-
 }
-

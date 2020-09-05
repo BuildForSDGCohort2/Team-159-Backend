@@ -53,5 +53,4 @@ class User extends Authenticatable
     public function isClient(){
         return $this->role->slug == 'client' ? true : false;
     }
-
 }
