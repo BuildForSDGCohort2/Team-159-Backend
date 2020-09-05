@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers\Authentication;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -7,7 +9,9 @@ use App\Notifications\PasswordResetRequest;
 use App\Notifications\PasswordResetSuccess;
 use App\User;
 use App\PasswordReset;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+
 class PasswordResetController extends Controller
 {
     /**
@@ -24,14 +28,15 @@ class PasswordResetController extends Controller
         $user = User::where('email', $request->email)->first();
         if (!$user)
             return response()->json([
-                "message" => "We can't find a user with that e-mail address."], 404);
-            
+                "message" => "We can't find a user with that e-mail address."
+            ], 404);
+
         $passwordReset = PasswordReset::updateOrCreate(
             ['email' => $user->email],
             [
                 'email' => $user->email,
                 'token' => Str::random(60)
-             ]
+            ]
         );
         if ($user && $passwordReset)
             $user->notify(
@@ -64,7 +69,7 @@ class PasswordResetController extends Controller
         }
         return response()->json($passwordReset);
     }
-     /**
+    /**
      * Reset password
      *
      * @param  [string] email
@@ -94,8 +99,8 @@ class PasswordResetController extends Controller
             return response()->json([
                 "message" => "We can't find a user with that e-mail address."
             ], 404);
-        
-        $user->password = bcrypt($request->password);
+
+        $user->password = Hash::make($request->password);
         $user->save();
         $passwordReset->delete();
         $user->notify(new PasswordResetSuccess($passwordReset));
