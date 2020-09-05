@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+// use App\Http\Controllers\PackageController;
 use App\package\Package;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -47,6 +47,7 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
+        $package = Package::where(['user_id', Auth()->user()->id])->all();
         $validator = Validator::make($request->all(),[
         'package_name'=>'required|string|max:50',
         'package_description'=>'required',
@@ -57,18 +58,21 @@ class PackageController extends Controller
         ]);
         if ($validator->fails()){
             return response()->json([
-                "message" =>" "], 400);
+                "message" =>""], 400);
         }
-        // $package = new Package;
-        // $package->package_name = $request->input('package_name');
-        // $package->package_description = $request->input('package_description');
-        // $package->package_weight = $request->input('package_weight');
-        // $package->package_category = $request->input('package_category');
-        // $package->package_pickup_address = $request->input('package_pickup_address');
-        // $package->package_delivery_address = $request->input('package_delivery_address');
-        // $package->save();
+        $package = new Package;
+        $package->package_name = $request->input('package_name');
+        $package->package_description = $request->input('package_description');
+        $package->package_weight = $request->input('package_weight');
+        $package->package_category = $request->input('package_category');
+        $package->package_pickup_address = $request->input('package_pickup_address');
+        $package->package_delivery_address = $request->input('package_delivery_address');
+        $package->company_id = $request->input('company_id');
+        $package->status_id = $request->input('status_id');
+        $package->user_id = Auth()->user()->id;
+        $package->save();
         return response()->json([
-            "message" =>"true"], 201);
+            "message" =>"package added successfuly"], 201);
     }
 
     /**

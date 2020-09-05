@@ -13,6 +13,7 @@ class Package extends Model
         'package_category',
         'package_pickup_address',
         'package_delivery_address',
+        'user_id',
         
     ];
 

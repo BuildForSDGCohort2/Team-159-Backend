@@ -16,7 +16,11 @@ class PackageStatusSeeder extends Seeder
         Status::truncate();
 
         Status::create([
-            'status' => 'pendingPickup'
+            'status' => 'pending'
+        ]);
+
+        Status::create([
+            'status' => 'Pickup'
         ]);
 
         Status::create([
