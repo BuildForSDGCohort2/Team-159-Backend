@@ -47,7 +47,7 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
-        $package = Package::where(['user_id', Auth()->user()->id])->all();
+        $package = Package::where('user_id', Auth()->user()->id)->all();
         $validator = Validator::make($request->all(),[
         'package_name'=>'required|string|max:50',
         'package_description'=>'required',
