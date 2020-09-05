@@ -21,9 +21,9 @@ Route::group(['namespace' => 'Authentication', 'middleware' => ['json.response',
         return $request->user();
     });
 });
-
-/*
+Route::group(['namespace' => 'Authentication', 'middleware' => ['json.response', 'cors']], function(){
 Route::post('/login', 'ApiLoginController@login');
+});
 
 Route::middleware('auth:api')->get('/logout', function(Request $request){
     $request->user()->tokens()->delete();
@@ -31,30 +31,22 @@ Route::middleware('auth:api')->get('/logout', function(Request $request){
         "message" => "logout succesful"
     ]);
 });
-Route::group([    
-    'namespace' => 'Auth',    
-    'middleware' => 'auth:api',    
-    'prefix' => 'password'
-], function () {    
+Route::group([ 'namespace' => 'Auth',   'middleware' => ['json.response', 'cors'] ,'preix' => 'password'], 
+function () {    
     Route::post('create', 'PasswordResetController@create');
     Route::get('find/{token}', 'PasswordResetController@find');
     Route::post('reset', 'PasswordResetController@reset');
+ });
+
+ Route::group([ 'namespace' => 'Auth',   'middleware' => ['json.response', 'cors'], 'prefix' => 'email'],
+  function () {    
+     Route::get('verify/{id}', 'VerificationController@verify')->name('verification.verify'); // Make sure to keep this as your route name
+     Route::get('resend', 'VerificationController@resend')->name('verification.resend');
 });
 
-Route::group([
-        'middleware' => 'auth:api',
-    ], function() {
-    Route::get('email/verify/{id}', 'VerificationController@verify')->name('verification.verify'); // Make sure to keep this as your route name
 
-    Route::get('email/resend', 'VerificationController@resend')->name('verification.resend');
-});
-
-Route::get('email/resend', 'VerificationController@resend')->name('verification.resend');
-});
-Route::group([
-    'middleware' => 'auth:api',
-    'prefix' =>'package'
-], function() {
-    Route::post('create', 'PackageController@createPackages');
+Route::group(['middleware' => ['json.response', 'cors'],'prefix' => 'package'], 
+function () {    
+    Route::post('/create', 'PackageController@store');
     Route::get('all', 'PackageController@showAllPackages');
 });

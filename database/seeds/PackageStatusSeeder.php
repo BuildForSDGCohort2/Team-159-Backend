@@ -20,7 +20,7 @@ class PackageStatusSeeder extends Seeder
         ]);
 
         Status::create([
-            'status' => 'pendingPickup'
+            'status' => 'Pickup'
         ]);
 
         Status::create([
