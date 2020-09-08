@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Str;
-use App\Http\Controllers\Controller;
 
 class ApiLoginController extends Controller
 {

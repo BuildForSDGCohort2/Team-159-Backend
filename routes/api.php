@@ -15,14 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['namespace' => 'Authentication', 'middleware' => ['json.response', 'cors']], function(){
-    Route::post('/register', 'RegisterController@register');
+    /*Route::post('/register', 'RegisterController@register');*/
     
     Route::middleware('auth:api')->get('/user', function (Request $request) {
         return $request->user();
     });
 });
+
 Route::group(['namespace' => 'Authentication', 'middleware' => ['json.response', 'cors']], function(){
-Route::post('/login', 'ApiLoginController@login');
+    Route::post('/login', 'ApiLoginController@login');
 });
 
 Route::middleware('auth:api')->get('/logout', function(Request $request){
@@ -31,11 +32,12 @@ Route::middleware('auth:api')->get('/logout', function(Request $request){
         "message" => "logout succesful"
     ]);
 });
+
 Route::group([ 'namespace' => 'Auth',   'middleware' => ['json.response', 'cors'] ,'preix' => 'password'], 
 function () {    
-    Route::post('create', 'PasswordResetController@create');
+    /*Route::post('create', 'PasswordResetController@create');
     Route::get('find/{token}', 'PasswordResetController@find');
-    Route::post('reset', 'PasswordResetController@reset');
+    Route::post('reset', 'PasswordResetController@reset');*/
  });
 
  Route::group([ 'namespace' => 'Auth',   'middleware' => ['json.response', 'cors'], 'prefix' => 'email'],
@@ -45,8 +47,11 @@ function () {
 });
 
 
-Route::group(['middleware' => ['json.response', 'cors'],'prefix' => 'package'], 
+Route::group(['middleware' => ['json.response', 'cors', 'auth:api'],'prefix' => 'package'], 
 function () {    
-    Route::post('/create', 'PackageController@store');
+    Route::post('create', 'PackageController@store');
     Route::get('all', 'PackageController@showAllPackages');
+    Route::post('{package}', 'PackageController@update');
+    Route::get('edit/{package}', 'PackageController@edit');
+    Route::get('createPackage', 'PackageController@createPackages');
 });

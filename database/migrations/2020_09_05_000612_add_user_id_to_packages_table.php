@@ -14,7 +14,7 @@ class AddUserIdToPackagesTable extends Migration
     public function up()
     {
         Schema::table('packages', function (Blueprint $table) {
-            $table->Integer('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

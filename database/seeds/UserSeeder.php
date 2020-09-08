@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 use App\Role;
 use App\User;
 
