@@ -22,7 +22,7 @@ class CreatePackagesTable extends Migration
             $table->string('package_pickup_address');
             $table->string('package_delivery_address');
             $table->integer('company_id')->nullable();
-            $table->integer('status_id')->nullable();
+            $table->foreign('status_id')->references('id')->on('statuses');
             
             $table->timestamps();
         });

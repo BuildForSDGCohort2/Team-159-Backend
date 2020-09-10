@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use App\package\Package;
 
 class User extends Authenticatable
 {
@@ -52,5 +53,9 @@ class User extends Authenticatable
 
     public function isClient(){
         return $this->role->slug == 'client' ? true : false;
+    }
+
+    public function packages(){
+        return $this->hasMany(Package::class);
     }
 }
