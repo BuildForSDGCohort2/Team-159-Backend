@@ -55,3 +55,8 @@ function () {
     Route::get('edit/{package}', 'PackageController@edit');
     Route::get('createPackage', 'PackageController@createPackages');
 });
+
+Route::group(['middleware' => ['json.response', 'cors', 'auth:api'],'prefix' => 'company'], 
+function () {  
+    Route::post('create', 'CompanyController@storeCompany');
+});
