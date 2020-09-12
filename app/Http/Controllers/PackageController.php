@@ -2,7 +2,6 @@
     namespace App\Http\Controllers;
     use App\package\Package;
     use Illuminate\Http\Request;
-    use Illuminate\Support\Facades\Validator;
 
     class PackageController extends Controller
     {
@@ -18,7 +17,9 @@
          */
         public function index()
         {
-            //$this->middleware('client');
+            //$packages = Package::get()->toJson(JSON_PRETTY_PRINT);
+            $packages = auth()->user()->packages()->get()->toJson(JSON_PRETTY_PRINT);
+            return response($packages, 200);
         }
 
         /**
@@ -26,9 +27,9 @@
          *
          * @return \Illuminate\Http\Response
          */
-        public function createPackages(Request $request)
+        public function create(Request $request)
         {
-            return response(['message'], 200);
+
         }
 
         /**
@@ -42,11 +43,11 @@
             //validate model
             $request->validate([
                 'package_name'=>'required|string|max:50',
-                'package_description'=>'required',
-                'package_weight'=>'required',
+                'package_description'=>'required|min:10',
+                'package_weight'=>'required|numeric',
                 'package_category'=>'required',
-                'package_pickup_address'=>'required',
-                'package_delivery_address'=>'required',
+                'package_pickup_address'=>'required|min:10',
+                'package_delivery_address'=>'required|min:10',
                 'company_id' => '',
             ]);
 
@@ -59,8 +60,8 @@
             $package->package_pickup_address = $request->input('package_pickup_address');
             $package->package_delivery_address = $request->input('package_delivery_address');
             $package->company_id = $request->input('company_id');
-            $package->associate(auth()->user());
-            //$package->user_id = auth()->user()->id;
+            $package->user()->associate(auth()->user()); //connect product to models
+
             $package->save();
             return response()->json([
                 "message" =>"package added successfuly"
@@ -70,14 +71,17 @@
         /**
          * Display the specified resource.
          *
-         * @param  \App\Package  $package
+         * @param  \App\package\Package  $package
          * @return \Illuminate\Http\Response
          */
-        public function showAllPackages(Request $request)
+        public function show(Package $package)
         {
-            //$packages = Package::get()->toJson(JSON_PRETTY_PRINT);
-            $packages = auth()->user()->packages()->get()->toJson(JSON_PRETTY_PRINT);
-            return response($packages, 200);
+            //check for authorization
+            if(!auth()->user()->packages->contains('id', $package->id)){
+                return response()->json(['message', 'Unauthorized'], 401);
+            }
+
+            return response()->json($package, 200);
         }
 
         /**
@@ -107,11 +111,11 @@
 
             $request->validate([
                 'package_name'=>'required|string|max:50',
-                'package_description'=>'required',
+                'package_description'=>'required|min:10',
                 'package_weight'=>'required|numeric',
                 'package_category'=>'required',
-                'package_pickup_address'=>'required',
-                'package_delivery_address'=>'required'
+                'package_pickup_address'=>'',
+                'package_delivery_address'=>''
             ]);
             
             //update package variable
@@ -132,6 +136,7 @@
          */
         public function destroy(Package $package)
         {
-            
+            //if package status is no more pending, package cannot be destroyed
+            Package::where
         }
     }
