@@ -35,9 +35,9 @@ Route::middleware('auth:api')->get('/logout', function(Request $request){
 
 Route::group([ 'namespace' => 'Auth',   'middleware' => ['json.response', 'cors'] ,'preix' => 'password'], 
 function () {    
-    /*Route::post('create', 'PasswordResetController@create');
+    Route::post('create', 'PasswordResetController@create');
     Route::get('find/{token}', 'PasswordResetController@find');
-    Route::post('reset', 'PasswordResetController@reset');*/
+    Route::post('reset', 'PasswordResetController@reset');
  });
 
  Route::group([ 'namespace' => 'Auth',   'middleware' => ['json.response', 'cors'], 'prefix' => 'email'],
@@ -49,8 +49,8 @@ function () {
 
 Route::group(['middleware' => ['json.response', 'cors', 'auth:api'],'prefix' => 'package'], 
 function () {    
-    Route::post('create', 'PackageController@store');
-    Route::get('all', 'PackageController@showAllPackages');
+    Route::get('index', 'PackageController@index');
+    Route::post('store', 'PackageController@store');
     Route::post('{package}', 'PackageController@update');
     Route::get('edit/{package}', 'PackageController@edit');
     Route::get('createPackage', 'PackageController@createPackages');

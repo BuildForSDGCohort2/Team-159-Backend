@@ -18,10 +18,10 @@ class Package extends Model
     ];
 
     public function status(){
-        $this->hasOne(\App\package\Status::class);
+        return $this->hasOne(\App\package\Status::class);
     }
 
     public function user(){
-        $this->hasOne(\App\User::class);
+        return $this->belongsTo(\App\User::class);
     }
 }
