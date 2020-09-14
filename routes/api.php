@@ -59,4 +59,8 @@ function () {
 Route::group(['middleware' => ['json.response', 'cors', 'auth:api'],'prefix' => 'company'], 
 function () {  
     Route::post('create', 'CompanyController@storeCompany');
+    Route::put('update/{company}', 'CompanyController@updateCompany');
+    Route::delete('delete/{id}', 'Companycontroller@deleteCompany');
+    Route::get('all', 'CompanyController@showCompanies');
+ 
 });

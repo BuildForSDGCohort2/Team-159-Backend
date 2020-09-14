@@ -70,10 +70,11 @@ class CompanyController extends Controller
      * @param  \App\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function show(Company $company)
-    {
-        //
-    }
+    public function showCompanies(Request $request)
+        {
+            $company = Company::get()->toJson(JSON_PRETTY_PRINT);
+            return response($company, 200);
+        }
 
     /**
      * Show the form for editing the specified resource.
@@ -86,6 +87,7 @@ class CompanyController extends Controller
         //
     }
 
+
     /**
      * Update the specified resource in storage.
      *
@@ -93,9 +95,15 @@ class CompanyController extends Controller
      * @param  \App\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function updateCompany(Request $request, Company $company)
     {
-        //
+
+        $company->company_name = $request->input('company_name');
+        $company->company_description = $request->input('company_description');
+        $company->telephone_number =$request->input('telephone_number');
+        $company->company_address = $request->input('company_address');
+        $company->save();
+        return response()->json($company, 200);
     }
 
     /**
@@ -104,8 +112,16 @@ class CompanyController extends Controller
      * @param  \App\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Company $company)
+    public function deleteCompany($id)
     {
-        //
+        $company = Company::find($id);
+        $company->delete();
+    
+            return response()->json([
+                "message" =>"company deleted successfuly"
+            ], 201);;
+        
+        // return response()->json('company not found', 404);
+        
     }
 }
