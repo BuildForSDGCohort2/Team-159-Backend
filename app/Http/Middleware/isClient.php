@@ -15,8 +15,8 @@ class isClient
      */
     public function handle($request, Closure $next)
     {
-        if(!$request->user()->isClient){
-            return response(['message' => 'Unauthorized'], 401);
+        if(!$request->user()->isClient()){
+            return response()->json(['message' => 'Unauthorized'], 401);
         }
         
         return $next($request);

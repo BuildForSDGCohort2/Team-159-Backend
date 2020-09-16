@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 class ApiLoginController extends Controller
 {
     public function __construct() {
-
+        //$this->middleware('guest');
     }
 
     public function login(Request $request){

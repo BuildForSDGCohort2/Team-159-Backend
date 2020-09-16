@@ -6,8 +6,9 @@
     class PackageController extends Controller
     {
 
-        public function controller(){
-            $this->middleware(['auth:api', 'client']);
+        public function __construct()
+        {
+            $this->middleware('client');
         }
 
         /**
@@ -22,15 +23,6 @@
             return response($packages, 200);
         }
 
-        /**
-         * Show the form for creating a new resource.
-         *
-         * @return \Illuminate\Http\Response
-         */
-        public function create(Request $request)
-        {
-
-        }
 
         /**
          * Store a newly created resource in storage.
@@ -77,23 +69,11 @@
         public function show(Package $package)
         {
             //check for authorization
-            if(!auth()->user()->packages->contains('id', $package->id)){
-                return response()->json(['message', 'Unauthorized'], 401);
+            if(auth()->user()->id != $package->user_id){
+                return response()->json(['message' => 'Unauthorized'], 401);
             }
-
+            
             return response()->json($package, 200);
-        }
-
-        /**
-         * Show the form for editing the specified resource.
-         *
-         * @param  \App\Package  $package
-         * @return \Illuminate\Http\Response
-         */
-        public function edit(Package $package)
-        {
-
-
         }
 
         /**
@@ -105,8 +85,9 @@
          */
         public function update(Request $request, Package $package)
         {
-            if(!auth()->user()->packages->contains('id', $package->id)){
-                return response()->json(['message', 'Unauthorized'], 401);
+            //ensure product belongs to user
+            if(auth()->user()->id != $package->user_id){
+                return response()->json(['message' => 'Unauthorized'], 401);
             }
 
             $request->validate([
@@ -137,6 +118,10 @@
         public function destroy(Package $package)
         {
             //if package status is no more pending, package cannot be destroyed
-            Package::where
+            if(auth()->user()->id != $package->user_id){
+                return response()->json(['message' => 'Unauthorized'], 401);
+            }
+
+            return response()->json(['message' => 'Successful']);
         }
     }

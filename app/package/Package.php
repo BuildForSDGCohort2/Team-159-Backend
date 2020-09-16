@@ -14,7 +14,6 @@ class Package extends Model
         'package_pickup_address',
         'package_delivery_address',
         'user_id',
-        
     ];
 
     public function status(){

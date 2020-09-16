@@ -47,11 +47,11 @@ function () {
 });
 
 
-Route::group(['middleware' => ['json.response', 'cors', 'auth:api'],'prefix' => 'package'], 
+Route::group(['middleware' => ['json.response', 'cors', 'auth:api'],'prefix' => 'packages'], 
 function () {    
-    Route::get('index', 'PackageController@index');
-    Route::post('store', 'PackageController@store');
+    Route::get('/', 'PackageController@index');
+    Route::post('/', 'PackageController@store');
+    Route::get('{package}', 'PackageController@show');
     Route::post('{package}', 'PackageController@update');
-    Route::get('edit/{package}', 'PackageController@edit');
-    Route::get('createPackage', 'PackageController@createPackages');
+    Route::get('create', 'PackageController@create');
 });
