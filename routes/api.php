@@ -53,9 +53,7 @@ function () {
     Route::post('/', 'PackageController@store');
     Route::get('{package}', 'PackageController@show');
     Route::post('{package}', 'PackageController@update');
-<<<<<<< HEAD
     Route::get('create', 'PackageController@create');
-=======
     Route::get('edit/{package}', 'PackageController@edit');
     Route::get('createPackage', 'PackageController@createPackages');
 });
@@ -67,5 +65,4 @@ function () {
     Route::delete('delete/{id}', 'Companycontroller@deleteCompany');
     Route::get('all', 'CompanyController@showCompanies');
  
->>>>>>> 046cd0863845b85085f56fddb2d4663424d3c3c7
 });

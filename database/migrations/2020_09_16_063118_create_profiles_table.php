@@ -19,7 +19,7 @@ class CreateProfilesTable extends Migration
             $table->string('last_name');
             $table->string('first_name');
             $table->integer('image');
-            // $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
         
         });
     }

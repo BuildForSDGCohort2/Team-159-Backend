@@ -11,6 +11,7 @@ class Profile extends Model
          'first_name',
          'image',
      ];
+     
      public function user(){
         return $this->belongsTo(\App\User::class);
     }
