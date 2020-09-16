@@ -103,7 +103,7 @@ class CompanyController extends Controller
         $company->telephone_number =$request->input('telephone_number');
         $company->company_address = $request->input('company_address');
         $company->save();
-        return response()->json($company, 200);
+        // return response()->json($company, 200);
     }
 
     /**

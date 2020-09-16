@@ -137,6 +137,6 @@
         public function destroy(Package $package)
         {
             //if package status is no more pending, package cannot be destroyed
-            Package::where
+            // Package::where
         }
     }
