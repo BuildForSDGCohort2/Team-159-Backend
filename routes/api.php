@@ -33,7 +33,7 @@ Route::middleware('auth:api')->get('/logout', function(Request $request){
     ]);
 });
 
-Route::group([ 'namespace' => 'Auth',   'middleware' => ['json.response', 'cors'] ,'preix' => 'password'], 
+Route::group([ 'namespace' => 'Auth',   'middleware' => ['json.response', 'cors'] ,'prefix' => 'password'], 
 function () {    
     Route::post('create', 'PasswordResetController@create');
     Route::get('find/{token}', 'PasswordResetController@find');
@@ -64,5 +64,4 @@ function () {
     Route::put('update/{company}', 'CompanyController@updateCompany');
     Route::delete('delete/{id}', 'Companycontroller@deleteCompany');
     Route::get('all', 'CompanyController@showCompanies');
- 
 });

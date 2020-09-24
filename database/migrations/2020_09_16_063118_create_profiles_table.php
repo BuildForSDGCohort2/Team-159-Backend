@@ -19,8 +19,8 @@ class CreateProfilesTable extends Migration
             $table->string('last_name');
             $table->string('first_name');
             $table->integer('image');
+            $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-        
         });
     }
 
