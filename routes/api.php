@@ -24,6 +24,7 @@ Route::group(['namespace' => 'Authentication', 'middleware' => ['json.response',
 
 Route::group(['namespace' => 'Authentication', 'middleware' => ['json.response', 'cors']], function(){
     Route::post('/login', 'ApiLoginController@login');
+    Route::post('/register', 'ApiLoginController@register');
 });
 
 Route::middleware('auth:api')->get('/logout', function(Request $request){
